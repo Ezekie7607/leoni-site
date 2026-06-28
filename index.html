@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gabriele Leoni — Web & AI Studio</title>
+    <meta
+      name="description"
+      content="Gabriele Leoni. Costruisco siti e sistemi AI per piccole imprese. Web development, automazioni, identità digitale."
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#0c0c0c" />
+    <meta property="og:title" content="Gabriele Leoni — Web & AI Studio" />
+    <meta
+      property="og:description"
+      content="Costruisco siti e sistemi AI che lavorano per te."
+    />
+    <meta property="og:type" content="website" />
+
+    <!-- Fontshare: Clash Display (display) + General Sans (body/mono) -->
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=general-sans@400,500,600&display=swap"
+    />
+
+    <!-- Add js hook ASAP so reveal initial state only applies with JS (content stays visible without it) -->
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#top">Salta al contenuto</a>
+
+    <!-- Preloader -->
+    <div class="preloader" data-preloader aria-hidden="true">
+      <div class="preloader__inner">
+        <span class="preloader__label">GL — Studio</span>
+        <span class="preloader__count" data-preloader-count>0</span>
+      </div>
+      <div class="preloader__bar"><span data-preloader-bar></span></div>
+    </div>
+
+    <!-- Custom cursor (dot + ring + contextual label) -->
+    <div class="cursor" data-cursor aria-hidden="true">
+      <div class="cursor__dot" data-cursor-dot></div>
+      <div class="cursor__ring" data-cursor-ring>
+        <span class="cursor__label" data-cursor-label></span>
+      </div>
+    </div>
+
+    <!-- Single full-screen WebGL canvas: hero backdrop + showroom planes -->
+    <canvas class="gl-canvas" data-gl-canvas aria-hidden="true"></canvas>
+
+    <!-- Decorative film grain overlay (SVG turbulence, pure CSS, no assets) -->
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="nav" data-reveal-now>
+      <a class="nav__brand" href="#top" data-magnetic>Gabriele&nbsp;Leoni</a>
+      <nav class="nav__menu" aria-label="Navigazione principale">
+        <a href="#chi-sono" data-magnetic>Chi sono</a>
+        <a href="#cosa-faccio" data-magnetic>Cosa faccio</a>
+        <a href="#showroom" data-magnetic>Showroom</a>
+        <a href="#contatti" class="nav__cta" data-magnetic>Contatti</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <!-- HERO -->
+      <section class="hero" aria-labelledby="hero-title">
+        <p class="hero__eyebrow" data-reveal>Web developer &amp; AI builder — Velletri, IT</p>
+        <h1 class="hero__title" id="hero-title" data-hero-parallax>
+          <span class="line" data-split>Costruisco siti</span>
+          <span class="line" data-split>e sistemi <em>AI</em></span>
+          <span class="line" data-split>che lavorano per te.</span>
+        </h1>
+        <div class="hero__meta">
+          <p data-reveal>Disponibile per progetti</p>
+          <a href="#showroom" class="hero__scroll" data-reveal data-magnetic>
+            Scorri per scoprire <span class="hero__scroll-arrow" aria-hidden="true">↓</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- CHI SONO -->
+      <section class="about" id="chi-sono" aria-labelledby="about-title">
+        <p class="section__index" data-reveal>01 — Chi sono</p>
+        <h2 class="about__lead" id="about-title" data-skew>
+          <span data-split>Progetto e sviluppo esperienze web</span>
+          <span data-split>e automazioni AI per chi vuole</span>
+          <span data-split>distinguersi davvero online.</span>
+        </h2>
+        <div class="about__body">
+          <p data-reveal>
+            Vengo dal mondo industriale e dall'AI applicata. Unisco la disciplina
+            tecnica a un'estetica intenzionale: ogni progetto è costruito a mano,
+            veloce, accessibile, senza template anonimi.
+          </p>
+          <p data-reveal>
+            Lavoro con piccole imprese e brand indipendenti per dare loro un sito
+            che sembra di un'agenzia da migliaia di euro, e i sistemi AI per farlo
+            scalare.
+          </p>
+        </div>
+      </section>
+
+      <!-- COSA FACCIO -->
+      <section class="services" id="cosa-faccio" aria-labelledby="services-title">
+        <p class="section__index" data-reveal>02 — Cosa faccio</p>
+        <h2 class="visually-hidden" id="services-title">Servizi</h2>
+        <ul class="services__list">
+          <li class="service" data-reveal>
+            <span class="service__num">(01)</span>
+            <h3 class="service__name">Web Design &amp; Development</h3>
+            <p class="service__desc">
+              Siti su misura, animati, performanti. Vanilla, WordPress o Shopify.
+            </p>
+          </li>
+          <li class="service" data-reveal>
+            <span class="service__num">(02)</span>
+            <h3 class="service__name">Sistemi &amp; Automazioni AI</h3>
+            <p class="service__desc">
+              Agenti, pipeline e flussi LLM che tolgono lavoro ripetitivo.
+            </p>
+          </li>
+          <li class="service" data-reveal>
+            <span class="service__num">(03)</span>
+            <h3 class="service__name">Identità &amp; Visibilità</h3>
+            <p class="service__desc">
+              Brand, copy, SEO e visibilità AI (AEO/GEO) per farti trovare.
+            </p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- SHOWROOM (WebGL planes synced to these tiles; CSS gradient is the fallback) -->
+      <section class="showroom" id="showroom" aria-labelledby="showroom-title">
+        <div class="showroom__head">
+          <p class="section__index" data-reveal>03 — Showroom</p>
+          <h2 class="showroom__title" id="showroom-title" data-skew data-split>
+            Lavori selezionati
+          </h2>
+        </div>
+        <div class="showroom__grid">
+          <article class="work" data-reveal data-cursor-view="Presto">
+            <figure
+              class="work__media"
+              data-webgl-plane
+              data-label="01"
+              data-name="Roma Lift"
+              data-color="#a33718"
+            >
+              <span class="work__index" aria-hidden="true">01</span>
+            </figure>
+            <div class="work__meta">
+              <h3 class="work__name">Roma Lift</h3>
+              <p class="work__tag">Sito aziendale · Forklift</p>
+            </div>
+          </article>
+          <article class="work" data-reveal data-cursor-view="Presto">
+            <figure
+              class="work__media"
+              data-webgl-plane
+              data-label="02"
+              data-name="FOR."
+              data-color="#8a2d14"
+            >
+              <span class="work__index" aria-hidden="true">02</span>
+            </figure>
+            <div class="work__meta">
+              <h3 class="work__name">FOR.</h3>
+              <p class="work__tag">E-commerce · POD brand</p>
+            </div>
+          </article>
+          <article class="work" data-reveal data-cursor-view="Presto">
+            <figure
+              class="work__media"
+              data-webgl-plane
+              data-label="03"
+              data-name="Denny Garofano"
+              data-color="#bf5a2a"
+            >
+              <span class="work__index" aria-hidden="true">03</span>
+            </figure>
+            <div class="work__meta">
+              <h3 class="work__name">Denny Garofano</h3>
+              <p class="work__tag">Sito + SEO · Consulente</p>
+            </div>
+          </article>
+          <article class="work" data-reveal data-cursor-view="Presto">
+            <figure
+              class="work__media"
+              data-webgl-plane
+              data-label="04"
+              data-name="Visibilità AI Kit"
+              data-color="#c8682f"
+            >
+              <span class="work__index" aria-hidden="true">04</span>
+            </figure>
+            <div class="work__meta">
+              <h3 class="work__name">Visibilità AI Kit</h3>
+              <p class="work__tag">Prodotto digitale · AEO/GEO</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- CONTATTI -->
+      <section class="contact" id="contatti" aria-labelledby="contact-title">
+        <!-- Aurora (reactbits) decorative backdrop — React island, lazy-mounted -->
+        <div class="aurora-layer" data-aurora aria-hidden="true"></div>
+        <p class="section__index" data-reveal>04 — Contatti</p>
+        <h2 class="contact__title" id="contact-title" data-skew>
+          <span data-split>Hai un progetto?</span>
+          <span data-split>Parliamone.</span>
+        </h2>
+        <a class="contact__mail" href="mailto:gabrieleleoni006@gmail.com" data-magnetic>
+          gabrieleleoni006@gmail.com
+        </a>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>© 2026 Gabriele Leoni</span>
+      <span class="footer__loc">Velletri (RM) — IT</span>
+      <a href="mailto:gabrieleleoni006@gmail.com" data-magnetic>Scrivimi</a>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,205 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Lenis: native scroll stays, JS drives smoothing. Falls back gracefully. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* Custom cursor only when JS runs AND it's a fine pointer (so no-JS keeps a cursor) */
+.js body {
+  cursor: none;
+}
+@media (hover: none), (pointer: coarse) {
+  .js body {
+    cursor: auto;
+  }
+}
+
+/* Keyboard focus — visible accent ring everywhere */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Skip link */
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1100;
+  background: var(--accent);
+  color: var(--bg);
+  padding: 0.7rem 1.1rem;
+  font-size: var(--text-sm);
+  transform: translateY(-120%);
+  transition: transform var(--dur-fast) var(--ease-out-expo);
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+img,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+/* --- Decorative film grain (SVG turbulence, no raster asset) --- */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .grain {
+    opacity: 0.35;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+}
+h1 {
+  font-weight: 700;
+}
+h2 {
+  font-weight: 600;
+}
+h3 {
+  font-weight: 500;
+}
+
+em {
+  font-style: normal;
+  color: var(--accent-2);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Layout primitive */
+.nav,
+main > section,
+.footer {
+  padding-inline: var(--gutter);
+}
+main {
+  max-width: var(--maxw);
+  margin-inline: auto;
+}
+
+/* --- Single WebGL canvas (behind content; hero backdrop + showroom planes) --- */
+.gl-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 1.2s var(--ease-out-expo);
+  pointer-events: none;
+}
+.gl-canvas.is-ready {
+  opacity: 1;
+}
+main,
+.nav,
+.footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* When the WebGL gallery is live, let planes show through the tiles
+   (CSS gradient + DOM number are the no-WebGL fallback). */
+.webgl .work__media {
+  background: transparent;
+}
+.webgl .work__index {
+  display: none;
+}
+
+/* --- Reveal system: visible by default; only hidden when JS is present --- */
+/* [data-reveal] blocks fade in (opacity animated by GSAP). */
+.js [data-reveal] {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+/* [data-split] lines stay opaque — they are masked by yPercent + overflow:hidden,
+   NOT by opacity (the reveal only animates transform). */
+.js [data-split] .split-line {
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal],
+  .js [data-split] .split-line {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .gl-canvas {
+    transition: none;
+  }
+  /* No custom cursor without motion: restore the system pointer. */
+  body {
+    cursor: auto;
+  }
+  .cursor {
+    display: none;
+  }
+  * {
+    scroll-behavior: auto !important;
+  }
+}
