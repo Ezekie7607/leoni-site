@@ -7,6 +7,8 @@ import { runPreloader } from "./lib/preloader.js";
 import { initCursor } from "./lib/cursor.js";
 import { initReveals } from "./animations/reveals.js";
 import { initScrollFX } from "./animations/scrollfx.js";
+import { initMarquee } from "./animations/marquee.js";
+import { initMenu } from "./lib/menu.js";
 import { initWebGL } from "./webgl/scene.js";
 import { mountIslands } from "./react/islands.js";
 
@@ -21,6 +23,8 @@ try {
 
 let scroll = null;
 let islands = null;
+let menu = null;
+let marquee = null;
 
 // Set the reveal initial states early (while the preloader still covers the page)
 // so headings don't flash visible-then-hidden when the curtain lifts.
@@ -33,6 +37,8 @@ runPreloader()
     scroll = initSmoothScroll();
     initCursor();
     initScrollFX(scroll.lenis);
+    menu = initMenu({ lenis: scroll.lenis });
+    marquee = initMarquee({ lenis: scroll.lenis });
     islands = mountIslands();
     if (gl) gl.start();
   });
@@ -45,6 +51,8 @@ if (import.meta.hot) {
     if (gl) gl.destroy();
     if (scroll) scroll.destroy();
     if (islands) islands.destroy();
+    if (menu) menu.destroy();
+    if (marquee) marquee.destroy();
   });
   import.meta.hot.accept(() => window.location.reload());
 }

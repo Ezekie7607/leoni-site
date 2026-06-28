@@ -56,20 +56,58 @@
     <!-- Decorative film grain overlay (SVG turbulence, pure CSS, no assets) -->
     <div class="grain" aria-hidden="true"></div>
 
-    <header class="nav" data-reveal-now>
+    <header class="nav" data-nav data-reveal-now>
       <a class="nav__brand" href="#top" data-magnetic>Gabriele&nbsp;Leoni</a>
-      <nav class="nav__menu" aria-label="Navigazione principale">
-        <a href="#chi-sono" data-magnetic>Chi sono</a>
-        <a href="#cosa-faccio" data-magnetic>Cosa faccio</a>
-        <a href="#showroom" data-magnetic>Showroom</a>
-        <a href="#contatti" class="nav__cta" data-magnetic>Contatti</a>
-      </nav>
+      <div class="nav__right">
+        <span class="nav__status"><span class="nav__status-dot"></span>Disponibile</span>
+        <button
+          class="nav__toggle"
+          type="button"
+          data-menu-toggle
+          data-magnetic
+          aria-expanded="false"
+          aria-controls="menu"
+        >
+          <span class="nav__toggle-txt" data-toggle-txt>Menu</span>
+          <span class="nav__burger" aria-hidden="true"><i></i><i></i></span>
+        </button>
+      </div>
     </header>
+
+    <!-- Full-screen overlay menu -->
+    <nav class="menu" id="menu" data-menu aria-label="Navigazione" aria-hidden="true">
+      <ul class="menu__list">
+        <li class="menu__item">
+          <a href="#chi-sono" data-menu-link>
+            <span class="menu__num">01</span><span class="menu__word">Chi sono</span>
+          </a>
+        </li>
+        <li class="menu__item">
+          <a href="#cosa-faccio" data-menu-link>
+            <span class="menu__num">02</span><span class="menu__word">Cosa faccio</span>
+          </a>
+        </li>
+        <li class="menu__item">
+          <a href="#showroom" data-menu-link>
+            <span class="menu__num">03</span><span class="menu__word">Showroom</span>
+          </a>
+        </li>
+        <li class="menu__item">
+          <a href="#contatti" data-menu-link>
+            <span class="menu__num">04</span><span class="menu__word">Contatti</span>
+          </a>
+        </li>
+      </ul>
+      <div class="menu__foot">
+        <a href="mailto:gabrieleleoni006@gmail.com">gabrieleleoni006@gmail.com</a>
+        <span>Velletri (RM) — IT</span>
+      </div>
+    </nav>
 
     <main id="top">
       <!-- HERO -->
       <section class="hero" aria-labelledby="hero-title">
-        <p class="hero__eyebrow" data-reveal>Web developer &amp; AI builder — Velletri, IT</p>
+        <p class="hero__eyebrow" data-reveal>Web &amp; AI — Velletri (RM)</p>
         <h1 class="hero__title" id="hero-title" data-hero-parallax>
           <span class="line" data-split>Costruisco siti</span>
           <span class="line" data-split>e sistemi <em>AI</em></span>
@@ -78,29 +116,33 @@
         <div class="hero__meta">
           <p data-reveal>Disponibile per progetti</p>
           <a href="#showroom" class="hero__scroll" data-reveal data-magnetic>
-            Scorri per scoprire <span class="hero__scroll-arrow" aria-hidden="true">↓</span>
+            Scorri <span class="hero__scroll-arrow" aria-hidden="true">↓</span>
           </a>
         </div>
       </section>
+
+      <!-- MARQUEE -->
+      <div class="marquee" data-marquee aria-hidden="true">
+        <div class="marquee__track" data-marquee-track data-marquee-speed="26">
+          <span>Web Design</span><span class="marquee__sep">✳</span>
+          <span>Sistemi AI</span><span class="marquee__sep">✳</span>
+          <span>Automazioni</span><span class="marquee__sep">✳</span>
+          <span>Identità</span><span class="marquee__sep">✳</span>
+          <span>SEO &amp; Visibilità</span><span class="marquee__sep">✳</span>
+        </div>
+      </div>
 
       <!-- CHI SONO -->
       <section class="about" id="chi-sono" aria-labelledby="about-title">
         <p class="section__index" data-reveal>01 — Chi sono</p>
         <h2 class="about__lead" id="about-title" data-skew>
-          <span data-split>Progetto e sviluppo esperienze web</span>
-          <span data-split>e automazioni AI per chi vuole</span>
-          <span data-split>distinguersi davvero online.</span>
+          <span data-split>Disciplina tecnica,</span>
+          <span data-split>estetica <em>intenzionale</em>.</span>
         </h2>
         <div class="about__body">
           <p data-reveal>
-            Vengo dal mondo industriale e dall'AI applicata. Unisco la disciplina
-            tecnica a un'estetica intenzionale: ogni progetto è costruito a mano,
-            veloce, accessibile, senza template anonimi.
-          </p>
-          <p data-reveal>
-            Lavoro con piccole imprese e brand indipendenti per dare loro un sito
-            che sembra di un'agenzia da migliaia di euro, e i sistemi AI per farlo
-            scalare.
+            Industria e AI applicata. Ogni progetto a mano: veloce, accessibile,
+            zero template.
           </p>
         </div>
       </section>
@@ -113,23 +155,17 @@
           <li class="service" data-reveal>
             <span class="service__num">(01)</span>
             <h3 class="service__name">Web Design &amp; Development</h3>
-            <p class="service__desc">
-              Siti su misura, animati, performanti. Vanilla, WordPress o Shopify.
-            </p>
+            <p class="service__desc">Siti su misura, animati, veloci.</p>
           </li>
           <li class="service" data-reveal>
             <span class="service__num">(02)</span>
             <h3 class="service__name">Sistemi &amp; Automazioni AI</h3>
-            <p class="service__desc">
-              Agenti, pipeline e flussi LLM che tolgono lavoro ripetitivo.
-            </p>
+            <p class="service__desc">Agenti e pipeline LLM su misura.</p>
           </li>
           <li class="service" data-reveal>
             <span class="service__num">(03)</span>
             <h3 class="service__name">Identità &amp; Visibilità</h3>
-            <p class="service__desc">
-              Brand, copy, SEO e visibilità AI (AEO/GEO) per farti trovare.
-            </p>
+            <p class="service__desc">Brand, SEO, visibilità AI.</p>
           </li>
         </ul>
       </section>
